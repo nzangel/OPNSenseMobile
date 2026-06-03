@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <base-config cleartextTrafficPermitted="true">
+    <trust-anchors>
+      <!-- Certificats système -->
+      <certificates src="system"/>
+      <!-- Certificats installés par l'utilisateur (CA auto-signé OPNsense) -->
+      <certificates src="user"/>
+    </trust-anchors>
+  </base-config>
+</network-security-config>

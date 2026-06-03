@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-screens/lib/commonjs/components/Screen.js b/node_modules/react-native-screens/lib/commonjs/components/Screen.js
+index e3887b8..841da7e 100644
+--- a/node_modules/react-native-screens/lib/commonjs/components/Screen.js
++++ b/node_modules/react-native-screens/lib/commonjs/components/Screen.js
+@@ -164,7 +164,7 @@ const InnerScreen = exports.InnerScreen = /*#__PURE__*/_react.default.forwardRef
+           goingForward
+         }
+       }], {
+-        useNativeDriver: true
++        useNativeDriver: false // RN 0.81 New Arch: findNodeHandle not available in bridgeless mode
+       })
+     }), !isNativeStack ?
+     // see comment of this prop in types.tsx for information why it is needed

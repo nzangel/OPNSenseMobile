@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "OPNsense Mobile",
+    "slug": "opnsense-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0f172a"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "fr.christophejung.opnsensemobile"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0f172a"
+      },
+      "package": "fr.christophejung.opnsensemobile",
+      "usesCleartextTraffic": true,
+      "abiFilters": ["arm64-v8a", "armeabi-v7a"]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-font",
+      "expo-asset",
+      "expo-web-browser",
+      "expo-dev-client",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "networkSecurityConfig": "./network_security_config.xml"
+          }
+        }
+      ]
+    ],
+    "scheme": "opnsense-mobile",
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "5dd3943f-6cf0-4ced-ba20-2192724eb83d"
+      }
+    }
+  }
+}
