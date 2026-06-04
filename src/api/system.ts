@@ -141,8 +141,15 @@ export async function testConnection(client: ApiClient): Promise<boolean> {
     await client.get('/core/firmware/running');
     return true;
   } catch (e: any) {
-    if (e?.response?.status) return true;
-    console.warn('testConnection failed:', e?.message);
+    if (e?.response?.status) {
+      console.log('testConnection: HTTP', e.response.status, '→ serveur joignable');
+      return true;
+    }
+    console.warn('testConnection FAILED:', {
+      message: e?.message,
+      code: e?.code,
+      baseURL: (e?.config?.baseURL ?? ''),
+    });
     return false;
   }
 }

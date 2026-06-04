@@ -66,11 +66,9 @@ export default function LoginScreen() {
       const ok = await testConnection(client);
 
       if (!ok) {
-        // Sauvegarde quand même pour ne pas perdre la saisie
-        await save(creds);
         Alert.alert(
           'Connexion échouée',
-          'Credentials sauvegardés, mais impossible de joindre le firewall.\nVérifie l\'URL et le réseau.',
+          'Impossible de joindre le firewall.\nVérifie l\'URL, le réseau et le certificat SSL.',
         );
         return;
       }
@@ -78,12 +76,10 @@ export default function LoginScreen() {
       // Sauvegarde uniquement si connexion OK → AuthGate redirige automatiquement
       await save(creds);
     } catch (e: any) {
-      // Sauvegarde quand même pour ne pas perdre la saisie
-      await save(creds);
       const msg = e?.response
         ? `HTTP ${e.response.status} — ${JSON.stringify(e.response.data)}`
         : e?.message ?? 'Unknown error';
-      Alert.alert('Erreur', msg);
+      Alert.alert('Erreur de connexion', msg);
       console.error('Connection error:', e);
     } finally {
       setLoading(false);

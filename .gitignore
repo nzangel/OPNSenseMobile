@@ -5,3 +5,4 @@ android/
 ios/
 *.jks
 *.keystore
+build-*.apk
