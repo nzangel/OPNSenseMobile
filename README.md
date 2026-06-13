@@ -155,4 +155,4 @@ OPNsense Mobile is an **unofficial** third-party application and is not affiliat
 
 ## License
 
-MIT © [Christophe Jung](mailto:opnsensemobile@les-tutos-du-tof.fr)
+MIT © [nZAngel](mailto:opnsensemobile@les-tutos-du-tof.fr)
