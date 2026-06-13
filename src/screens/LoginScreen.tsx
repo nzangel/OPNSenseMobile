@@ -14,6 +14,7 @@ import {
 import { useCredentialsStore } from '@/store/credentialsStore';
 import { createApiClient } from '@/api/client';
 import { testConnection } from '@/api/system';
+import CertificateImport from '@/components/CertificateImport';
 
 export default function LoginScreen() {
   const { save, credentials } = useCredentialsStore();
@@ -138,6 +139,8 @@ export default function LoginScreen() {
         <TouchableOpacity style={styles.buttonSecondary} onPress={handleSaveOnly} disabled={loading}>
           <Text style={styles.buttonSecondaryText}>Sauvegarder sans tester</Text>
         </TouchableOpacity>
+
+        <CertificateImport />
 
         <Text style={styles.hint}>
           Les credentials sont stockés localement sur ton appareil (stockage sécurisé).

@@ -52,7 +52,7 @@ module.exports = ({ config }) => {
     ...config,
     name: 'OPNsense Mobile',
     slug: 'opnsense-mobile',
-    version: '1.0.0',
+    version: '1.1.1',
     orientation: 'portrait',
     icon: './assets/icon.png',
     userInterfaceStyle: 'dark',
@@ -63,14 +63,15 @@ module.exports = ({ config }) => {
     },
     ios: {
       supportsTablet: false,
-      bundleIdentifier: 'fr.christophejung.opnsensemobile',
+      bundleIdentifier: 'fr.opnsensemobile',
     },
     android: {
       adaptiveIcon: {
         foregroundImage: './assets/adaptive-icon.png',
         backgroundColor: '#0f172a',
       },
-      package: 'fr.christophejung.opnsensemobile',
+      package: 'fr.opnsensemobile',
+      versionCode: 3,
     },
     plugins: [
       'expo-router',

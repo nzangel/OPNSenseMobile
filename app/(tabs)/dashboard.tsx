@@ -9,11 +9,10 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSystemStats, useInterfaces } from '@/hooks/useSystemStats';
-import { useCredentialsStore } from '@/store/credentialsStore';
+import { useFirewallsStore } from '@/store/firewallsStore';
 import { useMetricsStore } from '@/store/metricsStore';
 import SparklineChart from '@/components/SparklineChart';
 import ProgressBar from '@/components/ProgressBar';
-
 function SectionTitle({ icon, label }: { icon: React.ComponentProps<typeof Ionicons>['name']; label: string }) {
   return (
     <View style={styles.sectionHeader}>
@@ -42,7 +41,7 @@ function formatBytes(bytes: number): string {
 export default function DashboardScreen() {
   const { data: stats, isLoading: statsLoading, refetch: refetchStats } = useSystemStats();
   const { data: ifaces, isLoading: ifacesLoading, refetch: refetchIfaces } = useInterfaces();
-  const { clear } = useCredentialsStore();
+  const { clear } = useFirewallsStore();
   const { cpu: cpuHistory, ram: ramHistory, addMetric } = useMetricsStore();
 
   // Alimente l'historique à chaque nouveau point
@@ -57,6 +56,11 @@ export default function DashboardScreen() {
 
   const cpuColor = '#f59e0b';  // amber
   const ramColor = '#6366f1';  // indigo
+
+  async function handleDisconnect() {
+    await clear();
+    router.replace('/(auth)/login');
+  }
 
   return (
     <ScrollView
@@ -107,7 +111,7 @@ export default function DashboardScreen() {
         </View>
       </View>
 
-      {/* ── Uptime ──────────────────────────────────────────────── */}
+      {/* ── Système ─────────────────────────────────────────────── */}
       <SectionTitle icon="server-outline" label="Système" />
       <View style={styles.card}>
         <View style={styles.metricHeader}>
@@ -138,7 +142,8 @@ export default function DashboardScreen() {
         </View>
       ))}
 
-      <TouchableOpacity style={styles.logoutBtn} onPress={clear}>
+      <TouchableOpacity style={styles.logoutBtn} onPress={handleDisconnect}>
+        <Ionicons name="log-out-outline" size={15} color="#ef4444" />
         <Text style={styles.logoutText}>Déconnexion</Text>
       </TouchableOpacity>
     </ScrollView>
@@ -199,6 +204,6 @@ const styles = StyleSheet.create({
   badgeText: { fontSize: 11, fontWeight: '600', color: '#f1f5f9' },
   ifaceDetail: { color: '#cbd5e1', fontSize: 13, marginTop: 6 },
 
-  logoutBtn: { marginVertical: 32, alignItems: 'center' },
+  logoutBtn: { marginVertical: 32, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 6 },
   logoutText: { color: '#ef4444', fontSize: 14 },
 });

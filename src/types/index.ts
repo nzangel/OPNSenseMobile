@@ -4,6 +4,17 @@ export interface Credentials {
   apiSecret: string;
 }
 
+export interface Firewall {
+  id: string;
+  name: string;         // ex: "FW-Principal", "FW-Backup"
+  host: string;
+  apiKey: string;
+  apiSecret: string;
+  color: string;        // couleur d'identification visuelle
+  haGroupId?: string;   // ID du groupe HA (même valeur pour les deux nœuds)
+  haRole?: 'primary' | 'secondary';
+}
+
 export interface Interface {
   name: string;
   description: string;
